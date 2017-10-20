@@ -13,8 +13,8 @@ class GoodsCategory(models.Model):
     )
     name = models.CharField(default="",max_length=30,verbose_name="类别名",help_text="类别名")
     code = models.CharField(default="",max_length=30,verbose_name="类别名code",help_text="类别名code")
-    desc = models.CharField(default="",verbose_name="类别描述",help_text="类别描述")
-    category_type = models.CharField(choices=CATEGORY_TYPE,verbose_name="类目级别")
+    desc = models.CharField(max_length=300,default="",verbose_name="类别描述",help_text="类别描述")
+    category_type = models.CharField(max_length=30,choices=CATEGORY_TYPE,verbose_name="类目级别")
     parent_category = models.ForeignKey("self",null=True,blank=True,verbose_name="父类别",related_name="sub_cat")
     is_tab = models.BooleanField(default=False,verbose_name="是否导航",help_text="是否导航")
     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
@@ -45,7 +45,7 @@ class Goods(models.Model):
     goods_sn = models.CharField(max_length=50,default="",verbose_name="商品唯一货号")
     name = models.CharField(max_length=300,verbose_name="商品名")
     click_num = models.IntegerField(default=0,verbose_name="点击数")
-    sold_num = models.IntegerField(default==0,verbose_name="商品销售量")
+    sold_num = models.IntegerField(default=0,verbose_name="商品销售量")
     fav_num = models.IntegerField(default=0,verbose_name="商品收藏数")
     goods_num = models.IntegerField(default=0,verbose_name="库存数")
     market_price = models.FloatField(default=0,verbose_name="市场价格")
@@ -67,9 +67,9 @@ class GoodsImage(models.Model):
     '''
     商品轮播图
     '''
-    goods = models.ForeignKey(Goods)
-    image = models.ImageField(upload_to=)
-    add_time = models.DateTimeField
+    goods = models.ForeignKey(Goods,verbose_name="添加时间")
+    image = models.ImageField(upload_to="goods/images/")
+    add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
     class Meta:
         verbose_name = "轮播图"
         verbose_name_plural = verbose_name
