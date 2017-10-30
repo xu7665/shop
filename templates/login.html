@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!--inside-progress-query start-->
+<div class="inside-public-header" style="height: 80px;background: linear-gradient(#fff, #F0F3F7);">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</div>
+<!--inside-progress-query end-->
+<!--inside-introduce start-->
+<div class="inside-public-query-content">
+    <div class="container">
+        <div class="row inside-public-query-bg">
+            <div class="col-md-9 col-sm-9 inside-public-query-info">
+                <div class="index-register-left-info-title">
+                    <h4>用户登录</h4>
+                </div>
+                <div class="index-register-left-info-content">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control username" id="inputEmail3" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-5">
+                                <input type="password" class="form-control pwd1" id="inputPassword3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10 ">
+                                <button type="submit" class="btn col-md-5 col-sm-6 col-xs-8 btn-default index-register-btn" style="background-color:#C23571; color:#fff;margin-top: 20px;">登 录</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--inside-introduce end-->
+
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(".index-register-btn").on('click',function(){
+        var userName = $('#userName').val();
+        var password = $('.pwd1').val();
+        var  password2 = $('.pwd2').val();
+//        if(userName=null&&password=null){
+//
+//        }
+        if (userName.length < 4 || userName.length > 10) {
+            alert('用户名长度为4~10位');
+            return;
+        }
+        if (!password || !password2) {
+            alert('密码为空');
+            return;
+        }
+        if (password !== password2) {
+            alert('两次密码输入不一样,请重新输入');
+            return;
+        }
+        alert('登录成功！');
+    })
+</script>
+</body>
+</html>

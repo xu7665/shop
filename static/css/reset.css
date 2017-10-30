@@ -1,0 +1,15 @@
+*{margin:0;padding:0}
+body{font-size:12px;}
+img{border:none;}
+li{list-style-type:none;}
+a{text-decoration:none;}
+
+/*清除浮动*/
+.clearfix{zoom:1;}
+.clearfix:after{
+    display:block;
+    content:"clear";
+    height:0; clear:both;
+    overflow:hidden;
+    visibility:hidden;
+}
