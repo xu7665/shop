@@ -26,18 +26,21 @@
                     <h4>用户登录</h4>
                 </div>
                 <div class="index-register-left-info-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="login/" method="post" autocomplete="off">
+                        {% csrf_token %}
                         <div class="form-group">
+                            <div {% if login_form.errors.username %}errorput{% endif %}></div>
                             <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control username" id="inputEmail3" >
+                                <input type="text" name="username" type="text" class="form-control username" id="inputEmail3" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                             <div class="col-sm-5">
-                                <input type="password" class="form-control pwd1" id="inputPassword3">
+                                <input type="password"  name="password" class="form-control pwd1" id="inputPassword3">
                             </div>
+                            <div class="error btns login-form-tips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
@@ -47,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10 ">
-                                <button type="submit" class="btn col-md-5 col-sm-6 col-xs-8 btn-default index-register-btn" style="background-color:#C23571; color:#fff;margin-top: 20px;">登 录</button>
+                                <button type="submit" class="btn col-md-5 col-sm-6 col-xs-8 btn-default index-register-btn" style="background-color:#c23571; color:#fff;margin-top: 20px;">登 录</button>
                             </div>
                         </div>
                     </form>

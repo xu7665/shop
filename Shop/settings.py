@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'trade',
     'user_operation',
     'xadmin',
-    'crispy_forms'
+    'crispy_forms',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -63,8 +64,7 @@ ROOT_URLCONF = 'Shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,3 +133,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,"static"),
+]

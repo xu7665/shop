@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog-个人空间</title>
-    <link rel="stylesheet" href="css/index.css" type="text/css"/>
-    <link rel="stylesheet" href="css/reset.css" type="text/css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css"/>
+    <script src="/static/js/jquery-3.0.0.min.js"></script>
 </head>
 <body>
 
 <!--index-header start-->
 <div class="index-header">
     <div class="index-header-img">
-        <a href="#"><img src="images/logo.png" alt="博客logo" style="width:50px; height:40px;"/></a>
+        <a href="#"><img src="/static/images/logo.png" alt="博客logo" style="width:50px; height:40px;"/></a>
         </div>
     <div class="index-header-nav">
         <ul>
@@ -22,13 +23,21 @@
             <li><a href="#">资源</a></li>
            </ul>
         </div>
+    {% if request.user.is_authenticated %}
+
     <div class="index-header-login">
         <input type="text" class="search-btn" placeholder="搜索" maxlength="15" />
         <i class="icon-search search-info"></i>
-        <a href="#" class="login-btn">登录</a>
-        <a href="#" class="register-btn">注册</a>
+        <a href="/login" class="login-btn">冯冲已登录</a>
         </div>
-    </div>
+     {% else %}
+    <div class="index-header-login">
+        <input type="text" class="search-btn" placeholder="搜索" maxlength="15" />
+        <i class="icon-search search-info"></i>
+        <a href="/login" class="login-btn">登录</a>
+        <a href="/register" class="register-btn">注册</a>
+        </div>
+    {% endif %}
 <!--index-header end-->
 
 <!--index-main start-->
@@ -211,11 +220,23 @@
 </div>
 <!--index-main end-->
 
+<!--return-top-->
+<div class="index-return-top">
+    <img src="/static/images/return-top.png" />
+</div>
+
 <!--index-footer start-->
 <div class="index-footer ">
     <p class="index-footer-info">Powered & Designed by gu yong xu</p>
     <p>Copyright©2017 顾永旭-旭空间-旭生活</p>
     </div>
 <!--index-footer end-->
+
+<script type="text/javascript">
+    $('.index-return-top').click(function () {
+        $("html,body").animate({ scrollTop: 0 }, 300);
+        return false;
+    });
+    </script>
 </body>
 </html>

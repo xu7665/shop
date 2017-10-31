@@ -132,6 +132,12 @@ input:focus{
 .index-main-right-list-content li a:hover{
     color:#ff0000;
 }
+/*return-top start*/
+.index-return-top{
+    position:fixed;
+    right:20px;
+    bottom: 100px;
+}
 /*.index-footer start*/
 .index-footer{
     width:100%;
