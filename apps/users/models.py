@@ -1,3 +1,4 @@
+# _*_ coding:utf-8 _*_
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -10,6 +11,7 @@ class UserProfile(AbstractUser):
         ("male","男"),
         ("female","女"),
     )
+
     name = models.CharField(max_length=30,null=True,blank=True,verbose_name="姓名")
     birthday = models.DateField(null=True,blank=True,verbose_name="出生年月")
     gender = models.CharField(max_length=6,choices=GENDER,default="female",verbose_name="性别")
@@ -31,3 +33,21 @@ class VerifyCode(models.Model):
         verbose_name_plural = verbose_name
     def __str__(self):
         return self.code
+
+
+class EmailVerifyRecord(models.Model):
+    EMAIL_TYPE = (
+        ("register","注册"),
+        ("forget","忘记密码" ),
+    )
+
+    code = models.CharField(max_length=20,verbose_name=u"验证码")
+    email = models.EmailField(max_length=50,verbose_name=u"邮箱")
+    send_type = models.CharField(max_length=10,choices=EMAIL_TYPE,default="register", verbose_name=u"验证码类型")
+    send_time = models.DateTimeField(verbose_name=u"发送时间",default=datetime.now)
+
+    class Meta:
+        verbose_name = "邮箱验证码"
+        verbose_name_plural = verbose_name
+    def __unicode__(self):
+        return '{0}({1})'.format(self.code,self.email)

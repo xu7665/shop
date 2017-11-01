@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>首页</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="/static/js/jquery-3.0.0.min.js"></script>
 </head>
 <body>
 <!--inside-progress-query start-->
@@ -26,7 +27,8 @@
                     <h4>新用户注册</h4>
                 </div>
                 <div class="index-register-left-info-content">
-                    <form class="form-horizontal" action="register.html" method="post">
+                    <form class="form-horizontal" action="/register/" method="post" autocomplete="off">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                             <div class="col-sm-5">
@@ -42,7 +44,7 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
                             <div class="col-sm-5">
-                                <input type="text" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -53,13 +55,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="inputPassword3"    class="col-sm-2 control-label">邮箱</label>
+                            <label for="inputPassword3" class="col-sm-2 control-label">邮箱</label>
                             <div class="col-sm-5">
                                 <input type="text" name="email" class="form-control">
                             </div>
                         </div>
                         <div class="form-group captcha1"><label>验证：</label>
-                        {{ register_form.captcha }}
+                            {{ register_form.captcha }}
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
@@ -83,8 +85,18 @@
     </div>
 </div>
 <!--inside-introduce end-->
+<script>
+    $('.captcha').click(function (){
+        $.getJSON('/captcha/refresh/',function (json) {
+            console.log(json);
+            $(".captcha").attr("src",json.image_url);
+            $("#id_captcha_0").val(json.key);
+        });
+        return false;
+    });
+</script>
 
-<script src="/static/js/jquery-3.0.0.min.js"></script>
+
 <script src="/static/js/bootstrap.min.js"></script>
 
 </body>
