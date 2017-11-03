@@ -2,6 +2,7 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from DjangoUeditor.models import UEditorField
 # Create your models here.
 class UserProfile(AbstractUser):
     '''
@@ -51,3 +52,14 @@ class EmailVerifyRecord(models.Model):
         verbose_name_plural = verbose_name
     def __unicode__(self):
         return '{0}({1})'.format(self.code,self.email)
+
+class Acritcle(models.Model):
+    user = models.ForeignKey(UserProfile,null=True,blank=True,verbose_name="作者")
+    title = models.CharField(max_length=15,verbose_name="标题")
+    content_desc = UEditorField(verbose_name=u'内容',imagePath="users/images/",width=1000,height=300,filePath="users/files/",default='')
+    add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
+    class Meta:
+        verbose_name = "文章"
+        verbose_name_plural = verbose_name
+    def __str__(self):
+        return self.title
