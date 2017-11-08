@@ -3,9 +3,10 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate,login
 from django.views.generic.base import View
 from users.forms import LoginForm,RegisterForm
-from .models import UserProfile,EmailVerifyRecord
+from .models import UserProfile,EmailVerifyRecord,Acritcle
 from django.contrib.auth.hashers import make_password
 from apps.utils.email_send import send_register_email
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 class LoginView(View):
     def get(self,request):
@@ -66,3 +67,22 @@ class RegisterView(View):
         else:
             return render(request,"register.html")
 
+class Index_login(View):
+    def get(self,request):
+        all_acritcl = Acritcle.objects.all()
+        try:
+            page = request.GET.get('page',1)
+        except PageNotAnInteger:
+            page = 1
+
+        p = Paginator(all_acritcl,1,request=request)
+        acritcl = p.page(page)
+        return render(request, "index.html", {"all_acritcl": acritcl})
+
+
+
+
+
+# def index_login(request):
+#     all_acritcl = Acritcle.objects.all()
+#     return render(request,"index.html",{"all_acritcl":all_acritcl})

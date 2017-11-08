@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from django.views.generic import TemplateView
-from users.views import LoginView,RegisterView,ActiveUserView
+from users.views import LoginView,RegisterView,ActiveUserView,Index_login
+from django.views.static import serve
 import xadmin
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^ueditor/',include('DjangoUeditor.urls')),
-    url('^index/$',TemplateView.as_view(template_name="index.html"),name="index"),
+#    url('^index/$',TemplateView.as_view(template_name="index.html"),name="index"),
+    url('^index/$',Index_login.as_view(),name="index"),
     url('login/$',LoginView.as_view(),name='login'),
     url('^register/$',RegisterView.as_view(),name="register"),
     url('^captcha/', include('captcha.urls')),
