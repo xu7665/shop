@@ -21,6 +21,7 @@ from django.views.static import serve
 import xadmin
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^ueditor/',include('DjangoUeditor.urls')),
 #    url('^index/$',TemplateView.as_view(template_name="index.html"),name="index"),
     url('^index/$',Index_login.as_view(),name="index"),
