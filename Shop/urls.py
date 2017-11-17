@@ -19,6 +19,7 @@ from django.views.generic import TemplateView
 from users.views import LoginView,RegisterView,ActiveUserView,Index_login
 from django.views.static import serve
 import xadmin
+import Shop.settings
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^admin/', admin.site.urls),
@@ -28,5 +29,7 @@ urlpatterns = [
     url('login/$',LoginView.as_view(),name='login'),
     url('^register/$',RegisterView.as_view(),name="register"),
     url('^captcha/', include('captcha.urls')),
-    url(r'^active/(?P<active_code>.*)/$',ActiveUserView.as_view(),name="user_active")
+    url(r'^active/(?P<active_code>.*)/$',ActiveUserView.as_view(),name="user_active"),
+    #配置上传文件的访问处理函数
+    # url(r'^media/(?P<path>.*)$',serve,{"document_root":MEDIA_ROOT}),
 ]

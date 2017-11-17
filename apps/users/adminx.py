@@ -1,14 +1,34 @@
 # _*_ coding:utf-8 _*_
-from .models import Acritcle,UserProfile
+from .models import Acritcle,EmailVerifyRecord
 from xadmin.plugins.auth import UserAdmin
 import xadmin
+from xadmin import views
+
+class BaseSetting(object):
+    enable_themes = True
+    use_bootswatch = True
+
+class GlobalSettings(object):
+    site_title = "Vincent--Blog"
+    site_footer = "旭空间"
+    menu_style = "accordion"
+
 
 class AcritcleAdmin(object):
-    list_display = ('user','title','content_desc','add_time')
+    list_display = ('user','title','content_desc','add_time','content_text')
+    search_fields = ('user','title','content_desc','add_time','content_text')
+    list_filter = ('user','title','content_desc','add_time','content_text')
 
-class UserProfileAdmin(object):
-    list_display = ('name','birthday','gender','mobile','mages','email')
+class EmailVerifyRecordAdmin(object):
+    list_display = ['code','email','send_type','send_time']
+    search_fields = ['code','email','send_type',]
+    list_filter = ['code','email','send_type','send_time']
 
-xadmin.site.unregister(UserProfile)
+# class UserProfileAdmin(object):
+#     list_display = ('name','birthday','gender','mobile','mages','email')
+
+# xadmin.site.unregister(UserProfile)
 xadmin.site.register(Acritcle,AcritcleAdmin)
-xadmin.site.register(UserProfile,UserProfileAdmin)
+xadmin.site.register(EmailVerifyRecord,EmailVerifyRecordAdmin)
+xadmin.site.register(views.BaseAdminView,BaseSetting)
+xadmin.site.register(views.CommAdminView,GlobalSettings)

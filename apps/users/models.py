@@ -56,11 +56,12 @@ class EmailVerifyRecord(models.Model):
 
 class Acritcle(models.Model):
     user = models.ForeignKey(UserProfile,null=True,blank=True,verbose_name="作者")
-    title = models.CharField(max_length=15,verbose_name="标题")
+    title = models.CharField(max_length=50,verbose_name="标题")
+    content_text = models.CharField(max_length=200,default="",  verbose_name="文章描述")
     content_desc = UEditorField(verbose_name=u'内容',imagePath="users/images/",width=1000,height=300,filePath="users/files/",default='')
     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
     class Meta:
         verbose_name = "文章"
         verbose_name_plural = verbose_name
     def __str__(self):
-        return self.user
+        return self.title

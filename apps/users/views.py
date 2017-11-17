@@ -75,7 +75,7 @@ class Index_login(View):
         except PageNotAnInteger:
             page = 1
 
-        p = Paginator(all_acritcl,1,request=request)
+        p = Paginator(all_acritcl,5,request=request)
         acritcl = p.page(page)
         return render(request, "index.html", {"all_acritcl": acritcl})
 
