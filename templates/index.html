@@ -46,22 +46,26 @@
 <!--index-header end-->
 
 <!--index-main start-->
+{% block org_list %}
 <div class=wrapper>
     <div class="index-main">
         <div class="index-main-left-article">
-            {% for article in article_list %}
-            <div class="index-main-left-article-content">
-            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-            <p>文章描述：{{ article.desc }}，发布时间：2017-07-20</p>
-            <p>﻿{{ article.content }}</p>
-                </div>
-            {% endfor %}
+{#            {% for article in article_list %}#}
+{#            <div class="index-main-left-article-content">#}
+{#            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>#}
+{#            <p>文章描述：{{ article.desc }}，发布时间：2017-07-20</p>#}
+{#            <p>﻿{{ article.content }}</p>#}
+{#                </div>#}
+{#            {% endfor %}#}
             <div class="index-main-left-article-content">
                 {% for a_ariticle in all_acritcl.object_list %}
-                <a href="#">{{ a_ariticle.title }}</a>
+                <a href="/post/{{ a_ariticle.id }}">{{ a_ariticle.title }}</a>
                 <p>作者：小牛，发布时间：{{ a_ariticle.add_time }}</p>
-                <p>{{ a_ariticle.content_text }}
-                </p>
+                <div class="">
+                    {% autoescape off %}
+                    {{ a_ariticle.content_desc }}
+                    {% endautoescape %}
+                </div>
                 {% endfor %}
             </div>
             <div class="index-main-left-article-content">
@@ -72,6 +76,7 @@
                     一点没夸张，因为那个时候...
                 </p>
             </div>
+        {% endblock %}
 
 
         <div class="pagination">

@@ -23,7 +23,7 @@ UEditorUploadSettings = {
     "imageFieldName": "upfile",  # * 提交的图片表单名称 */
     "imageUrlPrefix": "",
     "imagePathFormat": "",
-    "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"],  # 上传图片格式显示
+    "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp",".JPG"],  # 上传图片格式显示
 
     # 涂鸦图片上传配置项 */
     "scrawlActionName": "uploadscrawl",  # 执行上传涂鸦的action名称 */

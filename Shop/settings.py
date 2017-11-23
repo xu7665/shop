@@ -27,7 +27,7 @@ SECRET_KEY = 'h7l9-n#ha_ffz1127m5cpm^5*d0z21sp%#_8%cdqcfzv&xi%7o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = "users.UserProfile"
 # Application definition
@@ -73,7 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-#                'django.core.context_processors.media',
+               'django.template.context_processors.media',
             ],
         },
     },

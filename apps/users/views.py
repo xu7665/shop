@@ -7,6 +7,7 @@ from .models import UserProfile,EmailVerifyRecord,Acritcle
 from django.contrib.auth.hashers import make_password
 from apps.utils.email_send import send_register_email
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render_to_response
 # Create your views here.
 class LoginView(View):
     def get(self,request):
@@ -79,6 +80,15 @@ class Index_login(View):
         acritcl = p.page(page)
         return render(request, "index.html", {"all_acritcl": acritcl})
 
+class Org_list(View):
+    def get(self,request,id):
+        all_org = Acritcle.objects.all().filter(id=id)
+        return render(request,"org-list.html",{"all_org":all_org})
+
+def page_not_found(request):
+    response = render_to_response('404.html',{})
+    response.status_code = 404
+    return response
 
 
 
