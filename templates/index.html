@@ -62,20 +62,14 @@
                 {% for a_ariticle in all_acritcl.object_list %}
                 <a href="/post/{{ a_ariticle.id }}">{{ a_ariticle.title }}</a>
                 <p>作者：小牛，发布时间：{{ a_ariticle.add_time }}</p>
-                <div class="">
+                <p class="index-main-left-article-panel">
                     {% autoescape off %}
-                    {{ a_ariticle.content_desc }}
+                    {{ a_ariticle.content_text }}
                     {% endautoescape %}
-                </div>
+                </p>
                 {% endfor %}
             </div>
             <div class="index-main-left-article-content">
-                <a href="#">清晨的上海，匆忙的脚步</a>
-                <p>作者：小牛，发布时间：2017-07-20</p>
-                <p>﻿打开手机天气预报，一片晃眼的太阳和38度以上的高温。这样的天气，让我不敢做它想。
-                    几天前，当群里的朋友叫着热死了的时候，我还得瑟，说自己穿着棉袄。
-                    一点没夸张，因为那个时候...
-                </p>
             </div>
         {% endblock %}
 

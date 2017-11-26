@@ -2,12 +2,11 @@
 {% block org_list %}
     <div class="index-main-left-article-content">
         {% for article in all_org %}
+            {% autoescape off %}
             <p>﻿{{ article.content_desc}}</p>
             <p>{{ article.content_text }}</p>
+            {% endautoescape %}
         {% endfor %}
     </div>
-    <p>﻿打开手机天气预报，一片晃眼的太阳和38度以上的高温。这样的天气，让我不敢做它想。
-                    几天前，当群里的朋友叫着热死了的时候，我还得瑟，说自己穿着棉袄。
-                    一点没夸张，因为那个时候...
-                </p>
+
 {% endblock %}
