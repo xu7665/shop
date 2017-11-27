@@ -107,27 +107,59 @@
                     </ul>
                 </div>
             <div class="index-main-right-list-content">
-                <h3>好文推荐</h3>
-                <ul>
-                    <li><a href="#">HTML-超文本标记语言</a></li>
-                    <li><a href="#">CSS-用于修饰html标签</a></li>
-                    <li><a href="#">Javascript-添加web特效</a></li>
-                    <li><a href="#">C#-实现web后台功能</a></li>
-                    <li><a href="#">Node.js-前后台交互</a></li>
-                    <li><a href="#">MVC-实现分工合作，高效率</a></li>
-                </ul>
+                <h3>评论空间</h3>
+                <textarea id="js-textarea" name="comments" cols="40" rows="3" class="index-comment-box"  placeholder="不吐不快，请写下你的评论吧"></textarea>
+                <input type="button" id="js-submit" value="发表评论" class="index-comment-info" />
+                <div class="index-all-comment">
+                    <h3>全部评论</h3>
+                    <div class="index-comment-panel">
+                        <div class="index-all-comment-left">
+                            <img src="images/pic-list1.png" alt="用户头像"/>
+                        </div>
+                        <div class="index-all-comment-right">
+                            <span>张三</span>
+                            <p>今天的天气真好啊！</p>
+                        </div>
+                        <div class="index-all-comment-right-number">
+                            <i class="icon-user icon-title" ></i><span>666</span>
+                            <i class="icon-comment icon-title" ></i><span>666</span>
+                            <i class="icon-heart icon-title" ></i><span>666</span>
+                        </div>
+                    </div>
+<script type="text/javascript">
+    $('#js-submit').on('click',function () {
+        var comments = $("#js-textarea").text()
+        if(comments == ""){
+            alert("评论不能为空")
+            return
+        }
+        $.ajax({
+            cache:false,
+            type:"POST",
+            url:"{% url 'add_comments' %}",
+            data:{'comments':comments},
+            async:true,
+            beforeSend:function (xhr,settings){
+                xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+            },
+            success:function (data) {
+                if(data.status == 'fail'){
+                    if(data.msg == '用户未登录'){
+                        window.location.href="/login/";
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if(data.status == 'success'){
+                    window.location.reload();
+                }
+
+            },
+        });
+    });
+</script>
+                </div>
             </div>
-            <div class="index-main-right-list-content">
-                <h3>参考文档</h3>
-                <ul>
-                    <li><a href="#">HTML-超文本标记语言</a></li>
-                    <li><a href="#">CSS-用于修饰html标签</a></li>
-                    <li><a href="#">Javascript-添加web特效</a></li>
-                    <li><a href="#">C#-实现web后台功能</a></li>
-                    <li><a href="#">Node.js-前后台交互</a></li>
-                    <li><a href="#">MVC-实现分工合作，高效率</a></li>
-                </ul>
-            </div>
+
             </div>
         </div>
 </div>

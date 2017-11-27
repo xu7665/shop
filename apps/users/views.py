@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate,login
 from django.views.generic.base import View
 from users.forms import LoginForm,RegisterForm
-from .models import UserProfile,EmailVerifyRecord,Acritcle
+from django.http import HttpResponse
+from .models import UserProfile,EmailVerifyRecord,Acritcle,Comments
 from django.contrib.auth.hashers import make_password
 from apps.utils.email_send import send_register_email
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
@@ -90,6 +91,37 @@ def page_not_found(request):
     response.status_code = 404
     return response
 
+class CommentsView(View):
+    def get(self,request,id):
+        course = Acritcle.objects.get(id=int(id))
+        all_comments = Comments.objects.all()
+        return render(request,"",{"course":course,"all_comments":all_comments})
+
+
+
+
+class AddCommentsView(View):
+    def post(self,request):
+        if not request.user.is_authenticated():
+            return HttpResponse('{"status":"fail","msg":"用户未登录"}',content_type='application/json')
+        # course_id = request.POST.get("id",0)
+        comments = request.POST.get("comments","")
+        if comments:
+            course_comments = Comments()
+            # couese = Acritcle.objects.get(id=int(course_id))
+            # course_comments.course = course
+            course_comments.comments = comments
+            course_comments.user = request.user
+            course_comments.save()
+            return HttpResponse('{"status":"success","msg":"评论成功"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status":"fail","msg":"评论失败"}', content_type='application/json')
+            # all_article = Acritcle.objects.get(id=int(id))
+            # all_comments = Comments.objects.all()
+            # return render(request,"commnet.html",{
+            #     "all_article":all_article,
+            #     "all_comments":all_comments
+            # })
 
 
 

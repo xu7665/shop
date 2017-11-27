@@ -17,6 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from users.views import LoginView,RegisterView,ActiveUserView,Index_login,Org_list
+from users.views import AddCommentsView
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 from users.views import page_not_found
@@ -32,6 +33,7 @@ urlpatterns = [
     url('^register/$',RegisterView.as_view(),name="register"),
     url('^captcha/', include('captcha.urls')),
     url(r'^active/(?P<active_code>.*)/$',ActiveUserView.as_view(),name="user_active"),
+    url(r'^add_comment/$',AddCommentsView.as_view(),name="add_comments"),
     url(r'^post/(?P<id>.*)/$',Org_list.as_view(),name="psot"),
     #配置上传文件的访问处理函数
     url(r'^media/(?P<path>.*)$',serve,{"document_root":MEDIA_ROOT})

@@ -170,3 +170,55 @@ input:focus{
     margin-left: 20px;
     margin-top:50px;
 }
+.index-comment-box{
+    max-width:100%;
+    max-height:10%;
+}
+.index-comment-info{
+    padding:2px;
+    float:right;
+    margin-top:5px;
+}
+.index-all-comment h3{
+    margin-top:30px;
+    padding-bottom: 7px;
+    color:#2FB3FF;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+.index-all-comment-left img{
+    float: left;
+    width:32%;
+    border-radius: 100%;
+}
+.index-all-comment-right{
+    margin-left:36%;
+}
+.index-all-comment-right span{
+    display: inline-block;
+    padding-bottom: 10px;
+    font-size: 15px;
+    color:#FB3287;
+}
+.index-all-comment-right p{
+    font-size: 13px;
+    font-family: 微软雅黑;
+}
+.index-comment-panel{
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 20px;
+}
+.index-all-comment-right-number{
+    margin-top: 20px;
+}
+.index-all-comment-right-number span {
+    padding-right: 20px;
+    color: #B4B4B4;
+    font-size: 13px;
+}
+.icon-title{
+    padding-right: 5px;
+    font-size: 15px;
+    color:#B4B4B4;
+}

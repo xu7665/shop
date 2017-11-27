@@ -65,3 +65,14 @@ class Acritcle(models.Model):
         verbose_name_plural = verbose_name
     def __str__(self):
         return self.title
+
+class Comments(models.Model):
+    user = models.ForeignKey(UserProfile,verbose_name=u"用户")
+    course = models.ForeignKey(Acritcle,verbose_name=u"文章")
+    comments = models.CharField(max_length=50,verbose_name=u"评论")
+    add_time = models.DateTimeField(default=datetime.now,verbose_name=u"添加时间")
+
+    class Meta:
+        verbose_name = u"文章评论"
+        verbose_name_plural = verbose_name
+
