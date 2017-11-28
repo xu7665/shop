@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/static/css/index.css" type="text/css"/>
     <link rel="stylesheet" href="/static/css/reset.css" type="text/css"/>
     <link rel="styRlesheet" hrf="/static/css/font-awesome.min.css" type="text/css"/>
+    <script src="/static/js/jquery.min.js"></script>
 </head>
 <body>
 
@@ -117,8 +118,10 @@
                             <img src="images/pic-list1.png" alt="用户头像"/>
                         </div>
                         <div class="index-all-comment-right">
-                            <span>张三</span>
-                            <p>今天的天气真好啊！</p>
+                            {% for all_comment in all_commnets %}
+                            <span>{{ all_comment.user.username }}</span>
+                            <p>{{ all_comment.comments}}</p>
+                            {% endfor %}
                         </div>
                         <div class="index-all-comment-right-number">
                             <i class="icon-user icon-title" ></i><span>666</span>
@@ -127,8 +130,8 @@
                         </div>
                     </div>
 <script type="text/javascript">
-    $('#js-submit').on('click',function () {
-        var comments = $("#js-textarea").text()
+    $("#js-submit").on('click',function () {
+        var comments = $("#js-textarea").val();
         if(comments == ""){
             alert("评论不能为空")
             return
@@ -147,7 +150,7 @@
                     if(data.msg == '用户未登录'){
                         window.location.href="/login/";
                     }else{
-                        alert(data.msg)
+                        alert(data.msg);
                     }
                 }else if(data.status == 'success'){
                     window.location.reload();
@@ -167,8 +170,8 @@
 
 <!--index-footer start-->
 <div class="index-footer ">
-    <p class="index-footer-info">Powered & Designed by gu yong xu</p>
-    <p>Copyright©2017 顾永旭-旭空间-旭生活</p>
+    <p class="index-footer-info">Powered & Designed by Vincent xu</p>
+    <p>Copyright©2017 V-旭空间-旭生活</p>
     </div>
 <!--index-footer end-->
 </body>

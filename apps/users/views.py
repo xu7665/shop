@@ -72,6 +72,10 @@ class RegisterView(View):
 class Index_login(View):
     def get(self,request):
         all_acritcl = Acritcle.objects.all()
+        all_commnets = Comments.objects.all()
+     #   comments_user = Comments.objects.get(user_id=17)
+     #    c_user = all_commnets.user.username
+
         try:
             page = request.GET.get('page',1)
         except PageNotAnInteger:
@@ -79,7 +83,7 @@ class Index_login(View):
 
         p = Paginator(all_acritcl,5,request=request)
         acritcl = p.page(page)
-        return render(request, "index.html", {"all_acritcl": acritcl})
+        return render(request, "index.html", {"all_acritcl": acritcl,"all_commnets":all_commnets})
 
 class Org_list(View):
     def get(self,request,id):
@@ -91,11 +95,11 @@ def page_not_found(request):
     response.status_code = 404
     return response
 
-class CommentsView(View):
-    def get(self,request,id):
-        course = Acritcle.objects.get(id=int(id))
-        all_comments = Comments.objects.all()
-        return render(request,"",{"course":course,"all_comments":all_comments})
+# class CommentsView(View):
+#     def get(self,request,id):
+#         course = Acritcle.objects.get(id=int(id))
+#         all_comments = Comments.objects.all()
+#         return render(request,"index.html",{"course":course,"all_comments":all_comments})
 
 
 

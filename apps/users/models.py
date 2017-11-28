@@ -68,7 +68,6 @@ class Acritcle(models.Model):
 
 class Comments(models.Model):
     user = models.ForeignKey(UserProfile,verbose_name=u"用户")
-    course = models.ForeignKey(Acritcle,verbose_name=u"文章")
     comments = models.CharField(max_length=50,verbose_name=u"评论")
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u"添加时间")
 
